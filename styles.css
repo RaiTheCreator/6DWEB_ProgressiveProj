@@ -107,3 +107,40 @@ footer {
     padding-bottom: 20px;
 }
 
+
+/* Table for Prices*/
+#price{
+    background-color: #313131; 
+    color: white;              
+    text-align: center;        
+    padding: 10px;                 
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: left;
+    width: 50%;
+}
+
+th {
+    background-color: #6E5B20;
+    color: white;
+    font-size: 16px;
+}
+
+table tr:last-child {
+    background-color: #dac790; 
+    color: white;               
+    font-weight: bold;         
+}
+
+

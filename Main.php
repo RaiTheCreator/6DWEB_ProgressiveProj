@@ -23,6 +23,25 @@
         "Caesar Salad" => 150,
     ];
 
+    // Operational Var
+    $totalPrice = 0;
+    $prices = array_values($menu_coffee);
+    $count = 0;
+
+    // While Loop
+    while (count($prices) > $count){
+        $totalPrice += $prices[$count];
+        $count++;
+    }
+
+    $totalPrice_2 = 0;
+    $prices_2 = array_values($menu_food);
+
+    // For Loop
+    for ($count = 0; count($prices) > $count; $count++){
+        $totalPrice_2 += $prices_2[$count];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +64,41 @@
             </div>
         </section>
     </main>
+
+    <h2 id="price">PRICE LIST</h2>
+    <table>
+        <tr>
+            <th>Coffee</th>
+            <th>Price</th>
+        </tr>
+        <?php foreach ($menu_coffee as $item => $price) { ?>
+            <tr>
+                <td><?= $item ?></td>
+                <td><?= "₱" .$price ?></td>
+            </tr>
+        <?php } ?>
+        <tr>
+            <td><?= "Bundle" ?></td>
+            <td><?= "₱" .$totalPrice ?></td>
+        </tr>
+    </table><br>
+
+     <table>
+        <tr>
+            <th>Food</th>
+            <th>Price</th>
+        </tr>
+        <?php foreach ($menu_food as $item => $price) { ?>
+            <tr>
+                <td><?= $item ?></td>
+                <td><?= "₱" .$price ?></td>
+            </tr>
+        <?php } ?>
+        <tr>
+            <td><?= "Bundle" ?></td>
+            <td><?= "₱" .$totalPrice_2 ?></td>
+        </tr>
+    </table>
 
     <?php include 'Footer.php';?>
 </body>
