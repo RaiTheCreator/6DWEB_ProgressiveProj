@@ -56,6 +56,7 @@
 <body>
     <?php include 'Header.php';?>
 
+    <!-- Hero -->
     <main>
         <section class="hero" id="hero">
             <div>
@@ -64,7 +65,8 @@
             </div>
         </section>
     </main>
-
+    
+    <!-- Tables that uses foreach iteration -->
     <h2 id="price">PRICE LIST</h2>
     <table>
         <tr>
