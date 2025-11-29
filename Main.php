@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <?php include 'Header.php';?>
+
     <main>
         <section class="hero" id="hero">
             <div>
@@ -43,5 +45,7 @@
             </div>
         </section>
     </main>
+
+    <?php include 'Footer.php';?>
 </body>
 </html>
