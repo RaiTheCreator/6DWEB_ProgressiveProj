@@ -1,22 +1,25 @@
 <?php
     declare(strict_types = 1);
 
+    // Global Vars
+    $tax_rate = 20;
+
     // Hero Information 
     $name = "Cafe ni Ulan";
     $tagline = "Fresh & Delicious, Everyday";
     $description = "A good coffee is like a warm hug in a cup, rich in aroma, smooth in taste, and comforting with every sip.";
 
     // Menu
-    $menu_coffee = [
-        "Espresso" => 80,
-        "Americano" => 90,
-        "Cappuccino" => 120,
-        "Latte" => 130,
-        "Mocha" => 150,
-        "Macchiato" => 110,
+    $coffee = [
+        "Espresso" => ["price" => 80, "stock" => 8],
+        "Americano" => ["price" => 90, "stock" => 30],
+        "Cappuccino" => ["price" => 120, "stock" => 15],
+        "Latte" => ["price" => 130, "stock" => 20],
+        "Mocha" => ["price" => 150, "stock" => 5],
+        "Macchiato" => ["price" => 110, "stock" => 10],
     ];
 
-    $menu_food = [
+    $food = [
         "Pancakes with Syrup" => 150,
         "French Toast" => 160,
         "Omelette" => 140,
@@ -25,16 +28,33 @@
         "Caesar Salad" => 150,
     ];
 
+    // Functions
+    function get_reorder_message(int $stock_level): string {
+        return ($stock_level < 10) ? "Yes" : "No";
+    }
+
+    function get_total_value(float $price, int $quantity): float{
+        return $price * $quantity;
+    }
+
+    function get_tax_due(float $price, int $quantity, int $tax_rate = 0): float{
+        $total = $price * $quantity;
+        $tax_due = $total * ($tax_rate / 100);
+        return $tax_due;
+    }
+
+
     // Operational Var
     $totalPrice = 0;
-    $prices = array_values($menu_coffee);
+    $prices = array_values($coffee);
     $count = 0;
 
     // While Loop
     while (count($prices) > $count){
-        $totalPrice += $prices[$count];
+        $totalPrice += $prices[$count]["price"];
         $count++;
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,13 +87,21 @@
                 <tr>
                     <th>Coffee</th>
                     <th>Price</th>
+                    <th>Stock</th>
+                    <th>Re-Order</th>
+                    <th>Total</th>
+                    <th>Tax Due</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($menu_coffee as $item => $price) { ?>
+                <?php foreach ($coffee as $item => $information) { ?>
                     <tr>
                         <td><?= $item ?></td>
-                        <td><?= "₱" .$price ?></td>
+                        <td><?= "₱" .$information["price"] ?></td>
+                        <td><?= $information["stock"] ?></td>
+                        <td><?= get_reorder_message($information["stock"]) ?></td>
+                        <td><?= get_total_value(price: $information["price"], quantity: $information["stock"]) ?></td>
+                        <td><?= "₱" .get_tax_due(price: $information["price"], quantity: $information["stock"], tax_rate: $tax_rate) ?></td>
                     </tr>
                 <?php } ?>
                 <tr>
