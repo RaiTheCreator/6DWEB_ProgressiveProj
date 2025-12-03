@@ -1,4 +1,6 @@
 <?php
+    declare(strict_types = 1);
+
     // Hero Information 
     $name = "Cafe ni Ulan";
     $tagline = "Fresh & Delicious, Everyday";
@@ -33,15 +35,6 @@
         $totalPrice += $prices[$count];
         $count++;
     }
-
-    $totalPrice_2 = 0;
-    $prices_2 = array_values($menu_food);
-
-    // For Loop
-    for ($count = 0; count($prices) > $count; $count++){
-        $totalPrice_2 += $prices_2[$count];
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -68,39 +61,28 @@
     
     <!-- Tables that uses foreach iteration -->
     <h2 id="price">PRICE LIST</h2>
-    <table>
-        <tr>
-            <th>Coffee</th>
-            <th>Price</th>
-        </tr>
-        <?php foreach ($menu_coffee as $item => $price) { ?>
-            <tr>
-                <td><?= $item ?></td>
-                <td><?= "₱" .$price ?></td>
-            </tr>
-        <?php } ?>
-        <tr>
-            <td><?= "Bundle" ?></td>
-            <td><?= "₱" .$totalPrice ?></td>
-        </tr>
-    </table><br>
-
-     <table>
-        <tr>
-            <th>Food</th>
-            <th>Price</th>
-        </tr>
-        <?php foreach ($menu_food as $item => $price) { ?>
-            <tr>
-                <td><?= $item ?></td>
-                <td><?= "₱" .$price ?></td>
-            </tr>
-        <?php } ?>
-        <tr>
-            <td><?= "Bundle" ?></td>
-            <td><?= "₱" .$totalPrice_2 ?></td>
-        </tr>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Coffee</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($menu_coffee as $item => $price) { ?>
+                    <tr>
+                        <td><?= $item ?></td>
+                        <td><?= "₱" .$price ?></td>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <td><?= "Bundle" ?></td>
+                    <td><?= "₱" .$totalPrice ?></td>
+                </tr>
+            </tbody>
+        </table><br>
+    </div>
 
     <?php include 'Footer.php';?>
 </body>
