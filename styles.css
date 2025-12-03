@@ -97,7 +97,7 @@ header li {
 
 
 /* Separator */
-#price {
+#separate {
     background-color: #313131; 
     color: white;              
     text-align: center;        
@@ -114,6 +114,7 @@ header li {
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 table {

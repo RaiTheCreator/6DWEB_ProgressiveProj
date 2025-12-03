@@ -43,7 +43,6 @@
         return $tax_due;
     }
 
-
     // Operational Var
     $totalPrice = 0;
     $prices = array_values($coffee);
@@ -69,6 +68,7 @@
 <body>
     <?php include 'Header.php';?>
 
+
     <!-- Hero -->
     <main>
         <section class="hero" id="hero">
@@ -79,35 +79,54 @@
         </section>
     </main>
     
-    <!-- Tables that uses foreach iteration -->
-    <h2 id="price">PRICE LIST</h2>
+    <!-- For Prices -->
+    <h2 id="separate">MENU</h2>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Coffee</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Re-Order</th>
-                    <th>Total</th>
-                    <th>Tax Due</th>
+                    <th>COFFEE</th>
+                    <th>PRICE</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($coffee as $item => $information) { ?>
+                <?php foreach ($coffee as $item => $price) { ?>
                     <tr>
                         <td><?= $item ?></td>
-                        <td><?= "₱" .$information["price"] ?></td>
-                        <td><?= $information["stock"] ?></td>
-                        <td><?= get_reorder_message($information["stock"]) ?></td>
-                        <td><?= get_total_value(price: $information["price"], quantity: $information["stock"]) ?></td>
-                        <td><?= "₱" .get_tax_due(price: $information["price"], quantity: $information["stock"], tax_rate: $tax_rate) ?></td>
+                        <td><?= "₱" .$price["price"] ?></td>
                     </tr>
                 <?php } ?>
                 <tr>
                     <td><?= "Bundle" ?></td>
                     <td><?= "₱" .$totalPrice ?></td>
                 </tr>
+            </tbody>
+        </table><br>
+    </div>
+
+
+    <!-- For stock control -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>COFFEE</th>
+                    <th>STOCK</th>
+                    <th>RE-ORDER</th>
+                    <th>TOTAL VALUE</th>
+                    <th>TAX DUE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($coffee as $item => $information) { ?>
+                    <tr>
+                        <td><?= $item ?></td>
+                        <td><?= $information["stock"] ?></td>
+                        <td><?= get_reorder_message($information["stock"]) ?></td>
+                        <td><?= get_total_value(price: $information["price"], quantity: $information["stock"]) ?></td>
+                        <td><?= "₱" .get_tax_due(price: $information["price"], quantity: $information["stock"], tax_rate: $tax_rate) ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table><br>
     </div>
